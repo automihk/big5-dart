@@ -1,5 +1,5 @@
 import 'package:big5/big5.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('decode some bytes of with big5 encoded', () {

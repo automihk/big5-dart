@@ -1,13 +1,45 @@
+/// A Dart library for Big5 character encoding and decoding.
+/// 
+/// This library provides utilities to encode and decode text using the Big5
+/// character encoding, commonly used for Traditional Chinese text.
+/// It also provides comparison methods for proper Chinese text collation.
 library big5;
+
+import 'package:collection/collection.dart';
 
 part 'table.dart';
 
-// only non-stream version
+/// A utility class for Big5 character encoding operations.
+///
+/// This class provides static methods to encode, decode, and compare
+/// strings using the Big5 character encoding standard.
 class Big5 {
+  /// Compares two strings using Big5 encoding for proper Chinese collation.
+  ///
+  /// This method first encodes both strings to Big5 byte arrays and then
+  /// compares them byte by byte. This ensures proper sorting order for
+  /// Chinese characters according to Big5 encoding standards.
+  ///
+  /// Parameters:
+  /// - [a]: The first string to compare
+  /// - [b]: The second string to compare
+  ///
+  /// Returns:
+  /// - A negative integer if [a] comes before [b]
+  /// - Zero if [a] and [b] are equal
+  /// - A positive integer if [a] comes after [b]
+  ///
+  /// Example:
+  /// ```dart
+  /// final result = Big5.compare("中文", "文字");
+  /// if (result < 0) {
+  ///   print("中文 comes before 文字");
+  /// }
+  /// ```
   static int compare(String a, String b) {
     final _a = encode(a);
     final _b = encode(b);
-    if (_listEquals(_a, _b)) {
+    if (const ListEquality().equals(_a, _b)) {
       return 0;
     }
     final _aLen = _a.length;
@@ -23,22 +55,46 @@ class Big5 {
     return _aLen.compareTo(_bLen);
   }
 
+  /// Decodes a list of Big5 encoded bytes to a Unicode string.
+  ///
+  /// Takes a list of integers representing Big5 encoded bytes and converts
+  /// them back to their original Unicode string representation.
+  ///
+  /// Parameters:
+  /// - [src]: A list of integers representing Big5 encoded bytes
+  ///
+  /// Returns:
+  /// - The decoded Unicode string
+  ///
+  /// Example:
+  /// ```dart
+  /// final bytes = [173, 68, 166, 184];
+  /// final decoded = Big5.decode(bytes);
+  /// print(decoded); // "胖次"
+  /// ```
   static String decode(List<int> src) {
     return _big5TransformDecode(src);
   }
 
+  /// Encodes a Unicode string to a list of Big5 encoded bytes.
+  ///
+  /// Takes a Unicode string and converts it to its Big5 encoded byte
+  /// representation. This is useful for storing or transmitting Chinese
+  /// text in systems that expect Big5 encoding.
+  ///
+  /// Parameters:
+  /// - [src]: The Unicode string to encode
+  ///
+  /// Returns:
+  /// - A list of integers representing the Big5 encoded bytes
+  ///
+  /// Example:
+  /// ```dart
+  /// final encoded = Big5.encode("胖次");
+  /// print(encoded); // [173, 68, 166, 184]
+  /// ```
   static List<int> encode(String src) {
     return _big5TransformEncode(src);
-  }
-
-  static bool _listEquals<T>(List<T> a, List<T> b) {
-    if (a == null) return b == null;
-    if (b == null || a.length != b.length) return false;
-    if (identical(a, b)) return true;
-    for (int index = 0; index < a.length; index += 1) {
-      if (a[index] != b[index]) return false;
-    }
-    return true;
   }
 
   static String _big5TransformDecode(List<int> src) {
@@ -46,7 +102,7 @@ class Big5 {
     var size = 0;
     var nDst = '';
 
-    void write(input) => nDst += (new String.fromCharCode(input));
+    void write(input) => nDst += String.fromCharCode(input);
 
     for (var nSrc = 0; nSrc < src.length; nSrc += size) {
       var c0 = src[nSrc];
@@ -108,52 +164,76 @@ class Big5 {
 
       if (r >= RUNE_SELF) {
         if (encode0Low <= r && r < encode0High) {
-          r = _encode0[r - encode0Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode0[r - encode0Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         } else if (encode1Low <= r && r < encode1High) {
-          r = _encode1[r - encode1Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode1[r - encode1Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         } else if (encode2Low <= r && r < encode2High) {
-          r = _encode2[r - encode2Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode2[r - encode2Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         } else if (encode3Low <= r && r < encode3High) {
-          r = _encode3[r - encode3Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode3[r - encode3Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         } else if (encode4Low <= r && r < encode4High) {
-          r = _encode4[r - encode4Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode4[r - encode4Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         } else if (encode5Low <= r && r < encode5High) {
-          r = _encode5[r - encode5Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode5[r - encode5Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         } else if (encode6Low <= r && r < encode6High) {
-          r = _encode6[r - encode6Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode6[r - encode6Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         } else if (encode7Low <= r && r < encode7High) {
-          r = _encode7[r - encode7Low];
-          if (r != 0) {
-            write2(r);
-            continue;
+          var encoded = _encode7[r - encode7Low];
+          if (encoded != null) {
+            r = encoded;
+            if (r != 0) {
+              write2(r);
+              continue;
+            }
           }
         }
         // TODO handle err

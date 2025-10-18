@@ -1,0 +1,15 @@
+name: big5_example
+description: Example usage of the big5 package
+
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  big5:
+    path: ../
+
+dev_dependencies:
+  test: ^1.24.0
