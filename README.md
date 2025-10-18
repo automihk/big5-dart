@@ -1,9 +1,9 @@
-# big5-dart
+# dart3_big5
 
-[![Pub Package](https://img.shields.io/pub/v/big5.svg)](https://pub.dev/packages/big5)
-[![Dart SDK](https://badgen.net/pub/sdk-version/big5)](https://pub.dev/packages/big5)
+[![Pub Package](https://img.shields.io/pub/v/dart3_big5.svg)](https://pub.dev/packages/dart3_big5)
+[![Dart SDK](https://badgen.net/pub/sdk-version/dart3_big5)](https://pub.dev/packages/dart3_big5)
 
-A pure Dart package that provides encoding and decoding methods for Big5 character encoding. This package is useful for working with traditional Chinese text and legacy systems that use Big5 encoding.
+A Dart 3+ compatible package that provides encoding and decoding methods for Big5 character encoding. This package is useful for working with traditional Chinese text and legacy systems that use Big5 encoding.
 
 ## Features
 
@@ -19,7 +19,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  big5: ^0.1.0
+  dart3_big5: ^0.1.0
 ```
 
 Then run:
@@ -33,7 +33,7 @@ dart pub get
 ### Basic Encoding and Decoding
 
 ```dart
-import 'package:big5/big5.dart';
+import 'package:dart3_big5/big5.dart';
 
 void main() {
   // Encode a string to Big5 bytes
@@ -53,7 +53,7 @@ void main() {
 The package provides a `compare` method for proper Chinese text collation:
 
 ```dart
-import 'package:big5/big5.dart';
+import 'package:dart3_big5/big5.dart';
 
 void main() {
   final String str1 = "中文";
@@ -77,7 +77,7 @@ void main() {
 You can use Big5 comparison in your own classes:
 
 ```dart
-import 'package:big5/big5.dart';
+import 'package:dart3_big5/big5.dart';
 
 class ChineseItem implements Comparable<ChineseItem> {
   ChineseItem({

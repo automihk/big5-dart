@@ -1,8 +1,8 @@
-name: big5
+name: dart3_big5
 description: >-
-    This package provides encode, decode method for big5.
-    If you need a solution to encode, decode some old system
-    like kk.muds, this package will help you!
+    A Dart 3+ compatible package providing encode and decode methods for Big5 character encoding.
+    Supports null safety and works on all Dart platforms (web, server, desktop, mobile).
+    Perfect for working with traditional Chinese text and legacy systems using Big5 encoding.
 version: 0.1.0
 homepage: https://github.com/automihk/big5-dart
 repository: https://github.com/automihk/big5-dart

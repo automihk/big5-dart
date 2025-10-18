@@ -1,6 +1,6 @@
-import 'package:big5/big5.dart';
+import 'package:dart3_big5/big5.dart';
 
-/// Example demonstrating basic usage of the Big5 package
+/// Example demonstrating basic usage of the dart3_big5 package
 void main() {
   print('=== Big5 Encoding/Decoding Example ===');
   

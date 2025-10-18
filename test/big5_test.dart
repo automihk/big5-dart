@@ -1,4 +1,4 @@
-import 'package:big5/big5.dart';
+import 'package:dart3_big5/big5.dart';
 import 'package:test/test.dart';
 
 void main() {
