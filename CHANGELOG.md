@@ -10,6 +10,14 @@
 
 * add encode method
 
+## [0.1.1] - 2025/10/19
+
+* **BUGFIX**: Fixed missing decode table entries causing round-trip conversion failures
+* Added missing decode entries for characters: 祢 (U+7962), 麽 (U+9EBD), 却 (U+5374), 告 (U+544A)
+* Characters now properly encode and decode in both directions
+* Added comprehensive tests to prevent regression of character conversion issues
+* Improved error handling for unsupported character variants
+
 ## [0.1.0] - 2025/10/18
 
 * **BREAKING CHANGE**: Upgraded to Dart 3.0+ with null safety support
